@@ -7,6 +7,7 @@ interface ExchangeInfo {
   to: string;
   rate: number;
   result: number;
+  amount: number;
 }
 
 interface CurrencyStore {

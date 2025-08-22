@@ -18,7 +18,7 @@ export default function ExchangeForm() {
     const [amount, from, , to] = value.split(' ');
     const data = await exchangeCurrency({ amount, from, to });
     console.log(data);
-    setExchangeInfo(data);
+    setExchangeInfo({ ...data, amount: Number(amount) });
   };
 
   return (
