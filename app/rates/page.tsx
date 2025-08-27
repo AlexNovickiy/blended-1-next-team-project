@@ -8,11 +8,13 @@ import Heading from '@/components/Heading/Heading';
 
 import css from './RatesPage.module.css';
 import { useCurrencyStore } from '@/lib/stores/currencyStore';
-import { useEffect, useMemo } from 'react';
+import { memo, useEffect, useMemo } from 'react';
 import { latestRates } from '@/lib/service/exchangeAPI';
 import Loader from '@/components/Loader/Loader';
 import RatesList from '@/components/RatesList/RatesList';
 import Filter from '@/components/Filter/Filter';
+
+const RatesListMemo = memo(RatesList);
 
 export default function RatesPage() {
   const { baseCurrency, rates, filter, isLoading, isError, setRates, setIsLoading, setIsError } =
@@ -50,7 +52,7 @@ export default function RatesPage() {
             }
           />
           {rates.length > 0 && <Filter />}
-          {filteredRates.length > 0 && <RatesList rates={filteredRates} />}
+          {filteredRates.length > 0 && <RatesListMemo rates={filteredRates} />}
 
           {isError && (
             <Heading error title="Something went wrong...😐 We cannot show current rates!" />
